@@ -1,0 +1,27 @@
+#! /usr/bin/python3
+"""
+Python ASCII password generator
+"""
+import argparse
+import random
+from string import ascii_letters, digits
+
+# Default length of the password if not specified as an argument
+PASS_LEN = 10
+
+# Set of characters to use
+chars = list(set(ascii_letters) | set(digits))
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser("Simple ASCII password generator")
+    parser.add_argument(
+        "length",
+        default=PASS_LEN,
+        type=int,
+        nargs="?",
+        help="Length of the password to be generated",
+    )
+    args = parser.parse_args()
+
+    password = [random.choice(chars) for i in range(args.length)]
+    print("".join(password))
